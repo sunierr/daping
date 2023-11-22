@@ -11,7 +11,7 @@ export default function MyCard(props) {
             transition="box-shadow 0.3s ease, transform 0.3s ease"
         >
             <Image
-                objectFit='cover'
+                objectFit='fill'
                 //maxW={{ base: '100%', sm: '200px' }}
                 src={props.mySrc}
                 alt='Caffe Latte'

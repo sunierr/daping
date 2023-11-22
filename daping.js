@@ -49,7 +49,7 @@ app.get('/0', (req, res) => {
     } else {
         console.log(`there is total ${sockets.length} sockets.`)
     }
-    res.send(200)
+   res.sendStatus(200);
 });
 app.get('/1', (req, res) => {
     if (sockets.length) {
@@ -68,7 +68,7 @@ app.get('/1', (req, res) => {
     } else {
         console.log(`there is total ${sockets.length} sockets.`)
     }
-    res.send(200)
+   res.sendStatus(200);
 });
 app.get('/2', (req, res) => {
     if (sockets.length) {
@@ -80,14 +80,52 @@ app.get('/2', (req, res) => {
                 if (error) {
                     console.log(`error sending message: ${error}`);
                 } else {
-                    console.log(`message sent successfully2`);
+                    console.log(`message sent successfully1`);
                 }
             });
         });
     } else {
         console.log(`there is total ${sockets.length} sockets.`)
     }
-    res.send(200)
+   res.sendStatus(200);
+});
+app.get('/4', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 4
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully4`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
+});
+app.get('/5', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 5
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully5`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
    
 
 })
@@ -108,7 +146,47 @@ app.get('/3', (req, res) => {
     } else {
         console.log(`there is total ${sockets.length} sockets.`)
     }
-    res.send(200)
+   res.sendStatus(200);
+})
+
+app.get('/6', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 6
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully6`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
+})
+
+app.get('/7', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 7
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully7`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
 })
 
 // 启动服务器

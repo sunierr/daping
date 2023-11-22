@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Test from './test'
 import './App2.css'
 import { socket } from './ws.util';
@@ -6,6 +6,7 @@ import { socket } from './ws.util';
 export default function App2(props) {
     const [open, setOpen] = useState(0);
     const [currentPage, setCurrentPage] = useState(0)
+    const myIframe = useRef(null);
     //console.log(currentPage)
 
     useEffect(() => {
@@ -42,6 +43,46 @@ export default function App2(props) {
                 case 3:
                     setOpen(0)
                     break;
+                case 4:
+                    setCurrentPage((prevPage) => {
+                        if (prevPage < 4) {
+                            return prevPage + 8;
+                        } else if (prevPage === 4) {
+                            return 7;
+                        } else {
+                            return prevPage - 4
+                        }
+                    });
+                    break;
+                case 5:
+                    setCurrentPage((prevPage) => {
+                        if (prevPage > 7) {
+                            return prevPage - 8;
+                        } else if (prevPage === 7) {
+                            return 3;
+                        } else {
+                            return prevPage + 4;
+                        }
+                    });
+                    break;
+                case 6:
+                    if (myIframe.current) {
+                        const iframeContentWindow = myIframe.current.contentWindow;
+                        iframeContentWindow.scrollTo({
+                          top: iframeContentWindow.scrollY - 100, // Adjust the amount of pixels you want to scroll
+                          behavior: 'smooth',
+                        });
+                      }
+                    break;
+                case 7:
+                    if (myIframe.current) {
+                        const iframeContentWindow = myIframe.current.contentWindow;
+                        iframeContentWindow.scrollTo({
+                          top: iframeContentWindow.scrollY + 100, // Adjust the amount of pixels you want to scroll
+                          behavior: 'smooth',
+                        });
+                      }
+                    break;
                 default:
                     throw console.error('not working');
             }
@@ -57,7 +98,7 @@ export default function App2(props) {
 
         })
     }, [])
-    let addresses = [
+    let addresses1 = [
         'https://eerduosirongmei.media.xinhuamm.net/pages/2023/09/14/be1bf5b58547478fa88be937a6d0e7fc.html',
         'https://eerduosirongmei.media.xinhuamm.net/pages/2023/09/09/6a39d075c5b74946a94650dea666ebf6.html',
         'https://eerduosirongmei.media.xinhuamm.net/pages/2023/08/27/9fcd8c5c4f3e47a3a06bd9296a96df8c.html',
@@ -71,9 +112,24 @@ export default function App2(props) {
         'https://eerduosirongmei.media.xinhuamm.net/pages/2023/01/21/d5bbc34d7050413b803edf48f714291d.html'
     ];
 
+    let addresses = [
+        
+            'test/0.html',
+            'test/1.html',
+            'test/2.html',
+            'test/3.html',
+            'test/4.html',
+            'test/5.html',
+            'test/6.html',
+            'test/7.html',
+            'test/8.html',
+            'test/9.html',
+            'test/10.html'
+    ]
+
     return (
         <>
-            {open ? <iframe src={addresses[currentPage]} title='show'></iframe> : <Test open={open} setOpen={setOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+            {open ? <iframe ref={myIframe} src={addresses[currentPage]} title='show'></iframe> : <Test open={open} setOpen={setOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
         </>
     )
 }
