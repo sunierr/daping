@@ -1,7 +1,10 @@
 // 引入express
 const express = require('express');
-
 const websocket = require('ws');
+const path = require('path');
+
+
+
 const wss = new websocket.Server({ port: 8080 });
 
 wss.on('close', function close() {
@@ -22,6 +25,7 @@ wss.on('connection', (ws) => {
 
 // 创建express应用
 const app = express();
+app.use(express.static(path.join(__dirname, 'build')));
 
 // 配置端口
 const port = 3001;
@@ -29,6 +33,10 @@ const port = 3001;
 // 解析请求体数据
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/build/index.html'));
+  });
 
 // 路由示例
 app.get('/0', (req, res) => {
