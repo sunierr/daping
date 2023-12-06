@@ -90,6 +90,7 @@ app.get('/2', (req, res) => {
    res.sendStatus(200);
 });
 app.get('/4', (req, res) => {
+    console.log(22222222)
     if (sockets.length) {
 
         sockets.forEach((socket) => {
@@ -109,6 +110,7 @@ app.get('/4', (req, res) => {
    res.sendStatus(200);
 });
 app.get('/5', (req, res) => {
+    console.log(111111)
     if (sockets.length) {
 
         sockets.forEach((socket) => {
@@ -163,6 +165,7 @@ app.get('/6', (req, res) => {
                 }
             });
         });
+        console.log(222222222222)
     } else {
         console.log(`there is total ${sockets.length} sockets.`)
     }
@@ -175,6 +178,46 @@ app.get('/7', (req, res) => {
         sockets.forEach((socket) => {
             socket.send(JSON.stringify({
                 subject: 7
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully7`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
+})
+
+app.get('/8', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 8
+            }), (error) => {
+                if (error) {
+                    console.log(`error sending message: ${error}`);
+                } else {
+                    console.log(`message sent successfully7`);
+                }
+            });
+        });
+    } else {
+        console.log(`there is total ${sockets.length} sockets.`)
+    }
+   res.sendStatus(200);
+})
+
+app.get('/9', (req, res) => {
+    if (sockets.length) {
+
+        sockets.forEach((socket) => {
+            socket.send(JSON.stringify({
+                subject: 9
             }), (error) => {
                 if (error) {
                     console.log(`error sending message: ${error}`);
