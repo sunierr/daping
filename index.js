@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 
 // Serve static files from the React app build folder
-app.use(express.static(path.join(__dirname, 'build1')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 
 
